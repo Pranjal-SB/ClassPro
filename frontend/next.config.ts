@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import { withSerwist } from "@serwist/turbopack";
-import path from "path";
 
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
@@ -10,8 +9,10 @@ const nextConfig: NextConfig = {
 		minimumCacheTTL: 7200,
 	},
 	output: 'standalone',
-	// Monorepo: ensure file tracing resolves from workspace root.
-	outputFileTracingRoot: path.join(__dirname, ".."),
+	outputFileTracingRoot: __dirname,
+	turbopack: {
+		root: __dirname,
+	},
 	experimental: {
 		nextScriptWorkers: true,
 		viewTransition: true,

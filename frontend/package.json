@@ -2,11 +2,16 @@
   "name": "classpro-frontend",
   "version": "3.1.2",
   "private": true,
-  "packageManager": "bun@1.1.38",
+  "packageManager": "npm@10.9.4",
+  "engines": {
+    "node": "22.x",
+    "npm": "10.x"
+  },
   "scripts": {
     "dev": "next dev --port 0243",
     "build": "next build",
-    "start": "next start",
+    "postbuild": "cp -R public .next/standalone/ && cp -R .next/static .next/standalone/.next/",
+    "start": "HOSTNAME=0.0.0.0 node .next/standalone/server.js",
     "lint": "eslint ."
   },
   "dependencies": {
